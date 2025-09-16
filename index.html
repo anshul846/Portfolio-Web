@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Anshul Singal — Full‑Stack Developer</title>
+    <link rel="stylesheet" href="/style.css" />
+    <meta
+      name="description"
+      content="Full‑stack developer skilled in React, Next.js, Node.js, Express.js, and MongoDB — building scalable, secure, and elegant web apps."
+    />
+    <meta name="theme-color" content="#0b2545" />
+
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              bg: "#001f3f", // deep dark blue for underwater
+              accent: "#33aaff", // lighter blue accent
+            },
+            boxShadow: { glow: "0 0 40px rgba(51,170,255,0.3)" },
+            keyframes: {
+              float: {
+                "0%,100%": { transform: "translateY(-4px)" },
+                "50%": { transform: "translateY(4px)" },
+              },
+              pulseSoft: {
+                "0%,100%": { opacity: 0.75 },
+                "50%": { opacity: 1 },
+              },
+            },
+            animation: {
+              float: "float 5s ease-in-out infinite",
+              pulseSoft: "pulseSoft 4s ease-in-out infinite",
+            },
+          },
+        },
+      };
+    </script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Three.js underwater background -->
+    <div id="bg-wrap" aria-hidden="true">
+      <canvas id="bg-canvas"></canvas>
+    </div>
+
+    <!-- Custom cursor -->
+    <div class="cursor" id="cursor"></div>
+
+    <!-- Navbar -->
+    <header
+      class="sticky top-0 z-40 border-b border-blue-800 backdrop-blur bg-[#001f3f]/75"
+    >
+      <nav
+        class="max-w-7xl mx-auto flex justify-between items-center px-4 sm:px-6 lg:px-8 py-3 text-cce7ff"
+      >
+        <a href="#home" class="text-accent font-extrabold text-lg">AS.dev</a>
+        <div class="flex items-center gap-2">
+          <a
+            href="#projects"
+            class="px-3 py-1.5 rounded-md text-sm hover:bg-blue-700/30 transition"
+            >Projects</a
+          >
+          <a
+            href="#skills"
+            class="px-3 py-1.5 rounded-md text-sm hover:bg-blue-700/30 transition"
+            >Skills</a
+          >
+          <a
+            href="#experience"
+            class="px-3 py-1.5 rounded-md text-sm hover:bg-blue-700/30 transition"
+            >Experience</a
+          >
+          <a
+            href="#contact"
+            class="px-3 py-1.5 rounded-md text-sm hover:bg-blue-700/30 transition"
+            >Contact</a
+          >
+          <a
+            id="resumeBtn"
+            href="/resume/Anshul Singal Resume.pdf"
+            download="Anshul_Singal_Resume.pdf"
+            class="ml-2 magnet inline-flex items-center gap-2 rounded-md bg-accent hover:bg-blue-500 text-black font-semibold px-3 py-1.5 transition group"
+            >Resume<span class="mglow"></span
+          ></a>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Hero -->
+    <section
+      id="home"
+      class="relative py-24 px-4 max-w-7xl mx-auto grid lg:grid-cols-2 gap-10 items-center"
+    >
+      <div class="reveal">
+        <div
+          class="inline-flex items-center gap-2 rounded-full px-3 py-1 glass text-xs shadow-glow mb-4"
+        >
+          <span
+            class="h-2 w-2 rounded-full bg-emerald-400 animate-pulse"
+          ></span>
+          Open to full‑stack roles
+        </div>
+        <h1 class="text-5xl font-extrabold leading-tight text-cce7ff">
+          Anshul Singal
+          <span class="block text-accent">Full‑Stack Developer</span>
+        </h1>
+        <p class="mt-6 text-blue-200 max-w-lg">
+          Skilled in React.js, Next.js, Node.js, Express.js, and MongoDB,
+          experienced in designing, developing, and deploying scalable, modern
+          web applications.
+        </p>
+        <div class="flex gap-4 mt-8 flex-wrap">
+          <a
+            href="mailto:anshulsingal777@gmail.com"
+            class="magnet px-6 py-3 rounded-md bg-accent text-black font-semibold hover:bg-blue-600 transition relative overflow-hidden"
+          >
+            <span>Contact</span><span class="mglow"></span>
+          </a>
+          <a
+            href="#projects"
+            class="magnet px-6 py-3 rounded-md border border-blue-500 text-blue-300 hover:bg-blue-600 hover:text-black transition relative overflow-hidden"
+          >
+            <span>View Projects</span><span class="mglow"></span>
+          </a>
+        </div>
+        <p class="mt-4 text-blue-400 text-sm">
+          Hisar, Haryana • English, Hindi • +91 89500 65658
+        </p>
+      </div>
+      <div
+        class="reveal glass rounded-2xl p-8 border border-blue-700 tilt relative"
+      >
+        <div
+          class="absolute inset-0 rounded-2xl pointer-events-none bg-gradient-to-t from-[#33aaff40] to-transparent"
+        ></div>
+        <div class="flex gap-6 items-center tilt-layer">
+          <div
+            class="w-24 h-24 rounded-full bg-gradient-to-br from-blue-600 via-blue-400 to-blue-300 p-1 shadow-glow select-none"
+          >
+            <img
+              src="/image/generated-image.png"
+              alt="Portrait of Anshul Singal"
+              class="rounded-full w-full h-full object-cover"
+            />
+          </div>
+          <div>
+            <p class="text-blue-200 leading-relaxed">
+              Passionate about modern UI/UX design, secure APIs, and
+              production‑ready deployment.
+            </p>
+            <div class="flex gap-3 mt-3">
+              <a
+                href="https://www.linkedin.com/in/anshul-singal"
+                target="_blank"
+                class="text-accent hover:underline"
+                >LinkedIn</a
+              >
+              <span class="text-blue-600">•</span>
+              <a
+                href="https://github.com/anshul846"
+                target="_blank"
+                class="text-accent hover:underline"
+                >GitHub</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold text-accent mb-8">Skills</h2>
+      <div class="grid md:grid-cols-2 gap-10">
+        <div class="reveal">
+          <h3 class="text-xl font-semibold text-accent">Front‑End</h3>
+          <p class="text-blue-300 mt-3 max-w-lg">
+            HTML, CSS, JavaScript, Bootstrap, Tailwind, Next.js, React.js,
+            Headless UI, Chart.js, ApexCharts, GitHub, Animate.css.
+          </p>
+          <div class="mt-4 flex flex-wrap gap-3">
+            <span class="tag px-3 py-1 rounded-md text-xs animate-float"
+              >React</span
+            >
+            <span class="tag px-3 py-1 rounded-md text-xs">Next.js</span>
+            <span class="tag px-3 py-1 rounded-md text-xs">Tailwind</span>
+            <span class="tag px-3 py-1 rounded-md text-xs">Headless UI</span>
+            <span class="tag px-3 py-1 rounded-md text-xs">Chart.js</span>
+            <span class="tag px-3 py-1 rounded-md text-xs">ApexCharts</span>
+          </div>
+        </div>
+        <div class="reveal">
+          <h3 class="text-xl font-semibold text-accent">Back‑End</h3>
+          <p class="text-blue-300 mt-3 max-w-lg">
+            Node.js, Express.js, RESTful APIs, GraphQL, PostgreSQL, SQL/NoSQL,
+            MongoDB/MySQL, WebSockets, SSR, API Integration, CI/CD.
+          </p>
+          <div class="mt-4 flex flex-wrap gap-3">
+            <span class="tag px-3 py-1 rounded-md text-xs">Node.js</span>
+            <span class="tag px-3 py-1 rounded-md text-xs">Express</span>
+            <span class="tag px-3 py-1 rounded-md text-xs">MongoDB</span>
+            <span class="tag px-3 py-1 rounded-md text-xs">PostgreSQL</span>
+            <span class="tag px-3 py-1 rounded-md text-xs">GraphQL</span>
+            <span class="tag px-3 py-1 rounded-md text-xs">WebSockets</span>
+            <span class="tag px-3 py-1 rounded-md text-xs">CI/CD</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold text-accent mb-8">Projects</h2>
+      <div class="grid lg:grid-cols-2 gap-10">
+        <article class="reveal glass rounded-2xl p-6 tilt">
+          <div class="flex justify-between items-start gap-4 tilt-layer">
+            <h3 class="text-xl font-semibold">Hemant-Det</h3>
+            <a
+              href="https://hemant-det-psi.vercel.app/"
+              target="_blank"
+              rel="noreferrer"
+              class="text-accent hover:underline"
+              >Live</a
+            >
+          </div>
+          <p class="mt-3 text-blue-200">
+            Designed and developed a fully responsive digital agency website
+            using Next.js and Tailwind CSS.
+          </p>
+          <ul class="mt-4 text-sm space-y-2 text-blue-300">
+            <li>
+              • Designed and developed a fully responsive digital agency website
+              using Next.js and Tailwind CSS.
+            </li>
+            <li>
+              • Focused on scalability and clean, maintainable code following
+              best practices.
+            </li>
+          </ul>
+        </article>
+        <article class="reveal glass rounded-2xl p-6 tilt">
+          <div class="flex justify-between items-start gap-4 tilt-layer">
+            <h3 class="text-xl font-semibold">Hexraa</h3>
+            <div class="flex gap-4 items-center">
+              <a
+                href="https://www.hexraa.com/"
+                target="_blank"
+                rel="noreferrer"
+                class="text-accent hover:underline"
+                >Frontend</a
+              >
+              <a
+                href="/"
+                target="_blank"
+                rel="noreferrer"
+                class="text-accent hover:underline"
+                >Backend</a
+              >
+            </div>
+          </div>
+          <p class="mt-3 text-blue-200">
+            Domain search, registration, and management platform with modern UI
+            and scalable full‑stack architecture.
+          </p>
+          <ul class="mt-4 text-sm space-y-2 text-blue-300">
+            <li>
+              • Admin services for users, domains, transactions, and
+              permissions.
+            </li>
+            <li>
+              • Secure, scalable, and efficient backend for the admin dashboard.
+            </li>
+            <li>
+              • Make Api's for Admin Pannel and Also intigerate the Project .
+            </li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section
+      id="experience"
+      class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+    >
+      <h2 class="text-3xl font-bold text-accent mb-8">Experience</h2>
+      <div class="reveal glass rounded-2xl p-6">
+        <div class="flex justify-between items-center">
+          <h3 class="text-xl font-semibold">
+            Full‑Stack Developer — Internship
+          </h3>
+          <span class="text-blue-500">02/2025 – 07/2025</span>
+        </div>
+        <ul class="mt-4 text-blue-300 list-disc list-inside space-y-1">
+          <li>Hands‑on full‑stack work on live apps and deployments.</li>
+          <li>Agile exposure, sprint collaboration, and mentorship.</li>
+          <li>Real‑world product development experience.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section
+      id="education"
+      class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+    >
+      <h2 class="text-3xl font-bold text-accent mb-8">Education</h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="reveal glass rounded-2xl p-6">
+          <h3 class="font-semibold">Okk Code — Back‑End Web‑Development</h3>
+          <p class="text-blue-300 mt-1">05/2024 – 11/2024 • Hisar, Haryana</p>
+        </div>
+        <div class="reveal glass rounded-2xl p-6">
+          <h3 class="font-semibold">Okk Code — Front‑End Web‑Development</h3>
+          <p class="text-blue-300 mt-1">10/2023 – 04/2024 • Hisar, Haryana</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold text-accent mb-8">Contact</h2>
+      <div class="reveal glass rounded-2xl p-6">
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <div class="text-blue-400">Email</div>
+            <a
+              href="mailto:anshulsingal777@gmail.com"
+              class="text-accent hover:underline"
+            >
+              anshulsingal777@gmail.com
+            </a>
+          </div>
+          <div>
+            <div class="text-blue-400">Phone</div>
+            <a href="tel:+918950065658" class="text-accent hover:underline"
+              >+91 89500 65658</a
+            >
+          </div>
+          <div>
+            <div class="text-blue-400">Location</div>
+            <div>Hisar, Haryana</div>
+          </div>
+          <div>
+            <div class="text-blue-400">Links</div>
+            <div class="flex gap-3">
+              <a
+                href="https://www.linkedin.com/in/anshul-singal"
+                class="text-accent hover:underline"
+                target="_blank"
+                >LinkedIn</a
+              >
+              <a
+                href="https://github.com/anshul846"
+                class="text-accent hover:underline"
+                target="_blank"
+                >GitHub</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-10">
+      <div
+        class="max-w-7xl mx-auto text-center text-blue-400 text-sm px-4 sm:px-6 lg:px-8"
+      >
+        © <span id="year"></span> Anshul Singal. All rights reserved.
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="/script.js" type="module"></script>
+  </body>
+</html>
