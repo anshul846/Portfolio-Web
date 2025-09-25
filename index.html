@@ -10,6 +10,7 @@
       content="Full‑stack developer skilled in React, Next.js, Node.js, Express.js, and MongoDB — building scalable, secure, and elegant web apps."
     />
     <meta name="theme-color" content="#0b2545" />
+
     <!-- Tailwind CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -39,20 +40,137 @@
         },
       };
     </script>
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap"
       rel="stylesheet"
     />
+
+    <style>
+      :root {
+        color-scheme: dark;
+      }
+      body {
+        background: #001f3f;
+        color: #cce7ff;
+        font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu,
+          Cantarell, "Helvetica Neue", Arial;
+        overflow-x: hidden;
+      }
+      /* glass effect with underwater blur and subtle tint */
+      .glass {
+        background: linear-gradient(
+          180deg,
+          rgba(50, 150, 255, 0.1),
+          rgba(27, 45, 77, 0.35)
+        );
+        border: 1px solid rgba(51, 170, 255, 0.4);
+        backdrop-filter: blur(14px);
+        box-shadow: 0 0 30px rgba(51, 170, 255, 0.15);
+      }
+      .tag {
+        border: 1px solid rgba(51, 170, 255, 0.5);
+        background: rgba(51, 170, 255, 0.1);
+        color: #9ad9ff;
+      }
+      .tag:hover {
+        background: rgba(51, 170, 255, 0.22);
+        color: #cce7ff;
+      }
+      /* reveal animations */
+      .reveal {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.8s ease, transform 0.8s ease;
+      }
+      .reveal.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      /* cursor styling */
+      .cursor {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 28px;
+        height: 28px;
+        border: 1.5px solid rgba(153, 204, 255, 0.6);
+        border-radius: 50%;
+        pointer-events: none;
+        transform: translate(-50%, -50%);
+        transition: all 0.15s ease;
+        z-index: 9999;
+        background: rgba(51, 170, 255, 0.1);
+        mix-blend-mode: screen;
+      }
+      .cursor--active {
+        width: 48px;
+        height: 48px;
+        background: rgba(102, 204, 255, 0.3);
+        border-color: rgba(170, 220, 255, 0.9);
+      }
+      /* buttons */
+      .magnet {
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+      }
+      .magnet span {
+        position: relative;
+        z-index: 2;
+      }
+      .magnet .mglow {
+        position: absolute;
+        width: 0;
+        height: 0;
+        border-radius: 9999px;
+        background: radial-gradient(
+          circle closest-side,
+          rgba(51, 170, 255, 0.4),
+          transparent 70%
+        );
+        transition: 0.3s ease;
+        opacity: 0.9;
+        pointer-events: none;
+      }
+      /* tilt cards */
+      .tilt {
+        transform-style: preserve-3d;
+        transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      .tilt .tilt-layer {
+        transform: translateZ(30px);
+      }
+      /* canvas fill */
+      #bg-wrap {
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        background: linear-gradient(
+          180deg,
+          #003355 0%,
+          #001f3f 40%,
+          #000c19 90%
+        );
+      }
+      #bg-canvas {
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+    </style>
   </head>
   <body>
     <!-- Three.js underwater background -->
     <div id="bg-wrap" aria-hidden="true">
       <canvas id="bg-canvas"></canvas>
     </div>
+
     <!-- Custom cursor -->
     <div class="cursor" id="cursor"></div>
+
     <!-- Navbar -->
     <header
       class="sticky top-0 z-40 border-b border-blue-800 backdrop-blur bg-[#001f3f]/75"
@@ -60,10 +178,7 @@
       <nav
         class="max-w-7xl mx-auto flex justify-between items-center px-4 sm:px-6 lg:px-8 py-3 text-cce7ff"
       >
-        <!-- Logo -->
         <a href="#home" class="text-accent font-extrabold text-lg">AS.dev</a>
-
-        <!-- Navigation Links -->
         <div class="flex items-center gap-2">
           <a
             href="#projects"
@@ -85,16 +200,13 @@
             class="px-3 py-1.5 rounded-md text-sm hover:bg-blue-700/30 transition"
             >Contact</a
           >
-
-          <!-- Resume Download Button -->
           <a
             id="resumeBtn"
-            href="/resume/Anshul_Singal_Resume.pdf"
+            href="/resume/Anshul Singal Resume.pdf"
             download="Anshul_Singal_Resume.pdf"
-            class="ml-2 inline-flex items-center gap-2 rounded-md bg-[#33aaff] hover:bg-blue-500 text-black font-semibold px-3 py-1.5 transition"
-          >
-            Resume
-          </a>
+            class="ml-2 magnet inline-flex items-center gap-2 rounded-md bg-accent hover:bg-blue-500 text-black font-semibold px-3 py-1.5 transition group"
+            >Resume<span class="mglow"></span
+          ></a>
         </div>
       </nav>
     </header>
@@ -118,9 +230,9 @@
           <span class="block text-accent">Full‑Stack Developer</span>
         </h1>
         <p class="mt-6 text-blue-200 max-w-lg">
-          Full Stack Developer skilled in React.js, Next.js, Node.js,
-          Express.js, and MongoDB, with experience designing, developing, and
-          deploying scalable, modern web applications.
+          Skilled in React.js, Next.js, Node.js, Express.js, and MongoDB,
+          experienced in designing, developing, and deploying scalable, modern
+          web applications.
         </p>
         <div class="flex gap-4 mt-8 flex-wrap">
           <a
@@ -188,8 +300,9 @@
         <div class="reveal">
           <h3 class="text-xl font-semibold text-accent">Front‑End</h3>
           <p class="text-blue-300 mt-3 max-w-lg">
-            HTML, CSS, JavaScript, Bootstrap, Tailwind, Next.js, React.js,
-            Headless UI, Chart.js, ApexCharts, GitHub, Animate.css.
+            HTML, CSS, JavaScript, TypeScript, Bootstrap, Tailwind, Next.js,
+            React.js, Headless UI, Chart.js, ApexCharts, GitHub, GitLab,
+            Animate.css.
           </p>
           <div class="mt-4 flex flex-wrap gap-3">
             <span class="tag px-3 py-1 rounded-md text-xs animate-float"
@@ -205,8 +318,8 @@
         <div class="reveal">
           <h3 class="text-xl font-semibold text-accent">Back‑End</h3>
           <p class="text-blue-300 mt-3 max-w-lg">
-            Node.js, Express.js, RESTful APIs, GraphQL, PostgreSQL, SQL/NoSQL,
-            MongoDB/MySQL, WebSockets, SSR, API Integration, CI/CD.
+            Node.js, Express.js, RESTful APIs, GraphQL, PostgreSQL, MongoDB, API
+            Integration, Nest.js.
           </p>
           <div class="mt-4 flex flex-wrap gap-3">
             <span class="tag px-3 py-1 rounded-md text-xs">Node.js</span>
@@ -216,6 +329,7 @@
             <span class="tag px-3 py-1 rounded-md text-xs">GraphQL</span>
             <span class="tag px-3 py-1 rounded-md text-xs">WebSockets</span>
             <span class="tag px-3 py-1 rounded-md text-xs">CI/CD</span>
+            <span class="tag px-3 py-1 rounded-md text-xs">Nest.js</span>
           </div>
         </div>
       </div>
@@ -237,16 +351,17 @@
             >
           </div>
           <p class="mt-3 text-blue-200">
-            A fully responsive digital agency website designed and developed
+            Designed and developed a fully responsive digital agency website
             using Next.js and Tailwind CSS.
           </p>
           <ul class="mt-4 text-sm space-y-2 text-blue-300">
             <li>
-              • Mobile-first responsive design with cross-browser compatibility.
+              • Designed and developed a fully responsive digital agency website
+              using Next.js and Tailwind CSS.
             </li>
             <li>
-              • Scalability and clean, maintainable code following best
-              practices.
+              • Focused on scalability and clean, maintainable code following
+              best practices.
             </li>
           </ul>
         </article>
@@ -271,8 +386,8 @@
             </div>
           </div>
           <p class="mt-3 text-blue-200">
-            Domain purchase and management platform with modern UI and scalable
-            full‑stack architecture.
+            Domain search, registration, and management platform with modern UI
+            and scalable full‑stack architecture.
           </p>
           <ul class="mt-4 text-sm space-y-2 text-blue-300">
             <li>
@@ -280,10 +395,11 @@
               permissions.
             </li>
             <li>
-              • Secure, scalable, and efficient backend powering admin
-              dashboard.
+              • Secure, scalable, and efficient backend for the admin dashboard.
             </li>
-            <li>• Developed and integrated APIs for the admin panel.</li>
+            <li>
+              • Make Api's for Admin Pannel and Also intigerate the Project .
+            </li>
           </ul>
         </article>
       </div>
@@ -300,19 +416,33 @@
           <h3 class="text-xl font-semibold">
             Full‑Stack Developer — Internship
           </h3>
-          <span class="text-blue-500">02/2025 – Present</span>
+          <span class="text-blue-500">02/2025 – 07/2025</span>
         </div>
         <ul class="mt-4 text-blue-300 list-disc list-inside space-y-1">
           <li>
-            Hands‑on full‑stack development on live applications and
-            deployments.
+            Hands-on full-stack internship: worked on frontend, backend,
+            databases, and deployments.
           </li>
           <li>
-            Exposure to agile development, sprint collaboration, and mentorship.
+            Implemented secure RESTful APIs, authentication, and performance
+            optimizations.
+          </li>
+
+          <li>
+            Implemented secure authentication (JWT/OAuth), role-based access,
+            and thorough input validation to harden APIs.
           </li>
           <li>
-            Real‑world product development experience with authentication &
-            authorization implementation (JWT, OAuth).
+            Optimized database schemas and queries, reducing average API
+            response times and improving scalability.
+          </li>
+          <li>
+            Integrated third-party services (payments, email, analytics) and
+            implemented monitoring and alerting for production stability.
+          </li>
+          <li>
+            Authored automated tests and technical documentation; mentored peers
+            to raise code quality and team velocity.
           </li>
         </ul>
       </div>
@@ -326,15 +456,11 @@
       <h2 class="text-3xl font-bold text-accent mb-8">Education</h2>
       <div class="grid md:grid-cols-2 gap-6">
         <div class="reveal glass rounded-2xl p-6">
-          <h3 class="font-semibold">
-            Okk Code — FullStack Web-Development (Back-End)
-          </h3>
-          <p class="text-blue-300 mt-1">05/2024 – 02/2025 • Hisar, Haryana</p>
+          <h3 class="font-semibold">Okk Code — Back‑End Web‑Development</h3>
+          <p class="text-blue-300 mt-1">05/2024 – 11/2024 • Hisar, Haryana</p>
         </div>
         <div class="reveal glass rounded-2xl p-6">
-          <h3 class="font-semibold">
-            Okk Code — FullStack Web-Development (Front-End)
-          </h3>
+          <h3 class="font-semibold">Okk Code — Front‑End Web‑Development</h3>
           <p class="text-blue-300 mt-1">10/2023 – 04/2024 • Hisar, Haryana</p>
         </div>
       </div>
@@ -395,6 +521,227 @@
     </footer>
 
     <!-- Scripts -->
-    <script type="module" src="/script.js"></script>
+    <script type="module" src="/script.js">
+      import * as THREE from "https://unpkg.com/three@0.160.0/build/three.module.js";
+
+      const canvas = document.getElementById("bg-canvas");
+      const renderer = new THREE.WebGLRenderer({
+        canvas,
+        antialias: true,
+        alpha: true,
+      });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+      const scene = new THREE.Scene();
+
+      const camera = new THREE.PerspectiveCamera(
+        60,
+        window.innerWidth / window.innerHeight,
+        0.1,
+        1000
+      );
+      camera.position.set(0, 0, 25);
+
+      function resize() {
+        const w = window.innerWidth,
+          h = window.innerHeight;
+        camera.aspect = w / h;
+        camera.updateProjectionMatrix();
+        renderer.setSize(w, h);
+      }
+      window.addEventListener("resize", resize);
+      resize();
+
+      // Underwater Particles (bubbles)
+
+      const bubbleCount = 2000;
+      const positions = new Float32Array(bubbleCount * 3);
+      const colors = new Float32Array(bubbleCount * 3);
+      const sizes = new Float32Array(bubbleCount);
+
+      const colorA = new THREE.Color(0x99d6ff); // light blue
+      const colorB = new THREE.Color(0x003d66); // dark blue
+
+      for (let i = 0; i < bubbleCount; i++) {
+        const i3 = i * 3;
+        // Spread in space (x,y,z)
+        positions[i3] = (Math.random() - 0.5) * 40;
+        positions[i3 + 1] = (Math.random() - 0.5) * 35;
+        positions[i3 + 2] = (Math.random() - 0.5) * 40;
+
+        const t = Math.random();
+        const c = colorA.clone().lerp(colorB, t);
+        colors[i3] = c.r;
+        colors[i3 + 1] = c.g;
+        colors[i3 + 2] = c.b;
+
+        sizes[i] = 0.1 + Math.random() * 0.3; // bubble size variations
+      }
+
+      const geometry = new THREE.BufferGeometry();
+      geometry.setAttribute(
+        "position",
+        new THREE.BufferAttribute(positions, 3)
+      );
+      geometry.setAttribute("color", new THREE.BufferAttribute(colors, 3));
+      geometry.setAttribute("size", new THREE.BufferAttribute(sizes, 1));
+
+      const material = new THREE.PointsMaterial({
+        size: 0.12,
+        vertexColors: true,
+        transparent: true,
+        opacity: 0.75,
+        sizeAttenuation: true,
+        depthWrite: false,
+      });
+
+      const points = new THREE.Points(geometry, material);
+      scene.add(points);
+
+      // Blue hover glow sphere slowly rotating
+      const glowGeo = new THREE.SphereGeometry(10, 32, 32);
+      const glowMat = new THREE.MeshBasicMaterial({
+        color: 0x007acc,
+        transparent: true,
+        opacity: 0.03,
+        blending: THREE.AdditiveBlending,
+        depthWrite: false,
+      });
+      const glow = new THREE.Mesh(glowGeo, glowMat);
+      scene.add(glow);
+
+      // Mouse parallax controls
+      const mouse = { x: 0, y: 0 };
+      window.addEventListener("pointermove", (e) => {
+        mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
+        mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
+      });
+
+      let time = 0;
+
+      function animate() {
+        requestAnimationFrame(animate);
+        time += 0.003;
+
+        // Create slow wave-like vertical bubble motion
+        const positions = geometry.attributes.position.array;
+        for (let i = 0; i < bubbleCount; i++) {
+          positions[i * 3 + 1] += 0.005 * Math.sin(time * 2 + i);
+          if (positions[i * 3 + 1] > 20) positions[i * 3 + 1] = -20; // reset up flow
+        }
+        geometry.attributes.position.needsUpdate = true;
+
+        points.rotation.y += 0.0009;
+        glow.rotation.y -= 0.0006;
+        glow.material.opacity = 0.02 + Math.abs(Math.sin(time)) * 0.02;
+
+        camera.position.x += (mouse.x * 3 - camera.position.x) * 0.05;
+        camera.position.y += (mouse.y * 2 - camera.position.y) * 0.05;
+        camera.lookAt(scene.position);
+
+        renderer.render(scene, camera);
+      }
+      animate();
+
+      // Intersection observer reveal animations
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) entry.target.classList.add("show");
+          });
+        },
+        { threshold: 0.15 }
+      );
+      document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+
+      // Footer year update
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      // Button magnetic effect
+      document.querySelectorAll(".magnet").forEach((btn) => {
+        const glow = btn.querySelector(".mglow");
+        btn.addEventListener("pointermove", (e) => {
+          const rect = btn.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          glow.style.width = "180px";
+          glow.style.height = "180px";
+          glow.style.transform = `translate(${x - 90}px, ${y - 90}px)`;
+        });
+        btn.addEventListener("pointerleave", () => {
+          glow.style.width = glow.style.height = "0px";
+        });
+      });
+
+      // Cards tilt effect
+      document.querySelectorAll(".tilt").forEach((card) => {
+        card.addEventListener("pointermove", (e) => {
+          const rect = card.getBoundingClientRect();
+          const px = (e.clientX - rect.left) / rect.width;
+          const py = (e.clientY - rect.top) / rect.height;
+          const rx = (py - 0.5) * -8;
+          const ry = (px - 0.5) * 10;
+          card.style.transform = `perspective(800px) rotateX(${rx}deg) rotateY(${ry}deg)`;
+        });
+        card.addEventListener("pointerleave", () => {
+          card.style.transform = `perspective(800px) rotateX(0deg) rotateY(0deg)`;
+        });
+      });
+
+      // Custom cursor
+      const cursor = document.getElementById("cursor");
+      window.addEventListener("pointermove", (e) => {
+        cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+      });
+      document.querySelectorAll("a, button, .magnet, .tilt").forEach((el) => {
+        el.addEventListener("pointerenter", () =>
+          cursor.classList.add("cursor--active")
+        );
+        el.addEventListener("pointerleave", () =>
+          cursor.classList.remove("cursor--active")
+        );
+      });
+
+      // Resume download safe fallback
+      function downloadResume(url, filename) {
+        try {
+          const sameOrigin =
+            location.origin === new URL(url, location.href).origin;
+          if (sameOrigin) {
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = filename;
+            a.style.display = "none";
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+            return;
+          }
+        } catch (_) {}
+        fetch(url, { mode: "cors" })
+          .then((r) => r.blob())
+          .then((blob) => {
+            const blobUrl = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = blobUrl;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            URL.revokeObjectURL(blobUrl);
+            a.remove();
+          })
+          .catch(() => window.open(url, "_blank", "noopener,noreferrer"));
+      }
+      const resumeAnchor = document.getElementById("resumeBtn");
+      if (resumeAnchor) {
+        const RESUME_URL = "/Resume.pdf";
+        const RESUME_NAME = "Anshul_Singal_Resume.pdf";
+        resumeAnchor.addEventListener("click", (e) => {
+          e.preventDefault();
+          downloadResume(RESUME_URL, RESUME_NAME);
+        });
+      }
+    </script>
   </body>
+  <!-- <script src="/script.js"></script> -->
 </html>
