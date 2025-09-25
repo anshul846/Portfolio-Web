@@ -176,35 +176,110 @@
       class="sticky top-0 z-40 border-b border-blue-800 backdrop-blur bg-[#001f3f]/75"
     >
       <nav
-        class="max-w-7xl mx-auto flex justify-between items-center px-4 sm:px-6 lg:px-8 py-3 text-cce7ff"
+        class="max-w-7xl mx-auto flex justify-between items-center px-4 sm:px-6 lg:px-8 py-3 text-cce7ff relative"
       >
         <a href="#home" class="text-accent font-extrabold text-lg">AS.dev</a>
-        <div class="flex items-center gap-2">
+        <!-- Hamburger Button (Mobile) -->
+        <button
+          id="navToggle"
+          class="sm:hidden flex flex-col justify-center items-center w-10 h-10 rounded hover:bg-blue-700/30 transition focus:outline-none z-50"
+          aria-label="Open menu"
+          type="button"
+        >
+          <span class="block w-6 h-0.5 bg-accent mb-1 transition-all"></span>
+          <span class="block w-6 h-0.5 bg-accent mb-1 transition-all"></span>
+          <span class="block w-6 h-0.5 bg-accent transition-all"></span>
+        </button>
+        <!-- Sidebar Overlay and Sidebar -->
+        <div
+          id="sidebarOverlay"
+          class="fixed inset-0 bg-black/40 backdrop-blur-sm z-40 opacity-0 pointer-events-none transition-opacity duration-300 sm:hidden"
+        ></div>
+        <aside
+          id="sidebarNav"
+          class="fixed top-0 left-0 h-full w-72 max-w-[90vw] bg-[#001f3f] border-r border-blue-800 shadow-2xl z-50 transform -translate-x-full transition-transform duration-300 sm:hidden flex flex-col"
+        >
+          <div
+            class="flex items-center justify-between px-6 py-5 border-b border-blue-800"
+          >
+            <span class="text-accent font-extrabold text-lg">AS.dev</span>
+            <button
+              id="sidebarClose"
+              class="w-9 h-9 flex items-center justify-center rounded hover:bg-blue-700/30 transition"
+              aria-label="Close menu"
+              type="button"
+            >
+              <svg
+                width="22"
+                height="22"
+                fill="none"
+                stroke="#33aaff"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+              >
+                <path d="M6 6l12 12M6 18L18 6" />
+              </svg>
+            </button>
+          </div>
+          <nav class="flex flex-col gap-2 px-6 py-6">
+            <a
+              href="#projects"
+              class="px-3 py-2 rounded-md text-sm hover:bg-blue-700/30 transition"
+              >Projects</a
+            >
+            <a
+              href="#skills"
+              class="px-3 py-2 rounded-md text-sm hover:bg-blue-700/30 transition"
+              >Skills</a
+            >
+            <a
+              href="#experience"
+              class="px-3 py-2 rounded-md text-sm hover:bg-blue-700/30 transition"
+              >Experience</a
+            >
+            <a
+              href="#contact"
+              class="px-3 py-2 rounded-md text-sm hover:bg-blue-700/30 transition"
+              >Contact</a
+            >
+            <a
+              id="resumeBtnSidebar"
+              href="/resume/Anshul Singal Resume.pdf"
+              download="Anshul_Singal_Resume.pdf"
+              class="magnet inline-flex items-center gap-2 rounded-md bg-accent hover:bg-blue-500 text-black font-semibold px-3 py-2 transition group"
+              >Resume<span class="mglow"></span
+            ></a>
+          </nav>
+        </aside>
+        <!-- Desktop Nav Links -->
+        <div
+          class="hidden sm:flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:static top-full left-0 w-full sm:w-auto bg-transparent border-0 px-0 sm:px-0 py-0 sm:py-0 transition-all duration-300"
+        >
           <a
             href="#projects"
-            class="px-3 py-1.5 rounded-md text-sm hover:bg-blue-700/30 transition"
+            class="px-3 py-2 rounded-md text-sm hover:bg-blue-700/30 transition w-full sm:w-auto"
             >Projects</a
           >
           <a
             href="#skills"
-            class="px-3 py-1.5 rounded-md text-sm hover:bg-blue-700/30 transition"
+            class="px-3 py-2 rounded-md text-sm hover:bg-blue-700/30 transition w-full sm:w-auto"
             >Skills</a
           >
           <a
             href="#experience"
-            class="px-3 py-1.5 rounded-md text-sm hover:bg-blue-700/30 transition"
+            class="px-3 py-2 rounded-md text-sm hover:bg-blue-700/30 transition w-full sm:w-auto"
             >Experience</a
           >
           <a
             href="#contact"
-            class="px-3 py-1.5 rounded-md text-sm hover:bg-blue-700/30 transition"
+            class="px-3 py-2 rounded-md text-sm hover:bg-blue-700/30 transition w-full sm:w-auto"
             >Contact</a
           >
           <a
             id="resumeBtn"
             href="/resume/Anshul Singal Resume.pdf"
             download="Anshul_Singal_Resume.pdf"
-            class="ml-2 magnet inline-flex items-center gap-2 rounded-md bg-accent hover:bg-blue-500 text-black font-semibold px-3 py-1.5 transition group"
+            class="ml-0 sm:ml-2 magnet inline-flex items-center gap-2 rounded-md bg-accent hover:bg-blue-500 text-black font-semibold px-3 py-2 transition group w-full sm:w-auto"
             >Resume<span class="mglow"></span
           ></a>
         </div>
@@ -214,7 +289,7 @@
     <!-- Hero -->
     <section
       id="home"
-      class="relative py-24 px-4 max-w-7xl mx-auto grid lg:grid-cols-2 gap-10 items-center"
+      class="relative lg:py-24 md:py-20 sm:py-12 py-8 px-4 max-w-7xl mx-auto grid lg:grid-cols-2 gap-10 items-center"
     >
       <div class="reveal">
         <div
@@ -225,9 +300,9 @@
           ></span>
           Open to full‑stack roles
         </div>
-        <h1 class="text-5xl font-extrabold leading-tight text-cce7ff">
+        <h1 class="sm:text-5xl text-4xl font-extrabold leading-tight text-cce7ff">
           Anshul Singal
-          <span class="block text-accent">Full‑Stack Developer</span>
+          <span class="block text-accent ">Full‑Stack Developer</span>
         </h1>
         <p class="mt-6 text-blue-200 max-w-lg">
           Skilled in React.js, Next.js, Node.js, Express.js, and MongoDB,
@@ -253,7 +328,7 @@
         </p>
       </div>
       <div
-        class="reveal glass rounded-2xl p-8 border border-blue-700 tilt relative"
+        class="reveal glass max-w-[] w-full mx-auto rounded-2xl sm:p-8 px-3 py-5 border border-blue-700 tilt relative"
       >
         <div
           class="absolute inset-0 rounded-2xl pointer-events-none bg-gradient-to-t from-[#33aaff40] to-transparent"
@@ -521,6 +596,41 @@
     </footer>
 
     <!-- Scripts -->
+    <script>
+      // Animated Sidebar Navbar
+      const navToggle = document.getElementById("navToggle");
+      const sidebar = document.getElementById("sidebarNav");
+      const sidebarOverlay = document.getElementById("sidebarOverlay");
+      const sidebarClose = document.getElementById("sidebarClose");
+      function openSidebar() {
+        sidebar.classList.remove("-translate-x-full");
+        sidebarOverlay.classList.remove("opacity-0", "pointer-events-none");
+        document.body.style.overflow = "hidden";
+      }
+      function closeSidebar() {
+        sidebar.classList.add("-translate-x-full");
+        sidebarOverlay.classList.add("opacity-0", "pointer-events-none");
+        document.body.style.overflow = "";
+      }
+      navToggle && navToggle.addEventListener("click", openSidebar);
+      sidebarClose && sidebarClose.addEventListener("click", closeSidebar);
+      sidebarOverlay && sidebarOverlay.addEventListener("click", closeSidebar);
+      // Close sidebar on nav link click (mobile)
+      sidebar &&
+        sidebar.querySelectorAll("a").forEach((link) => {
+          link.addEventListener("click", closeSidebar);
+        });
+      // Resume download for sidebar
+      const resumeBtnSidebar = document.getElementById("resumeBtnSidebar");
+      if (resumeBtnSidebar) {
+        const RESUME_URL = "/Resume.pdf";
+        const RESUME_NAME = "Anshul_Singal_Resume.pdf";
+        resumeBtnSidebar.addEventListener("click", (e) => {
+          e.preventDefault();
+          downloadResume(RESUME_URL, RESUME_NAME);
+        });
+      }
+    </script>
     <script type="module" src="/script.js">
       import * as THREE from "https://unpkg.com/three@0.160.0/build/three.module.js";
 
