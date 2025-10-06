@@ -181,8 +181,8 @@ function downloadResume(url, filename) {
 }
 const resumeAnchor = document.getElementById("resumeBtn");
 if (resumeAnchor) {
-  const RESUME_URL = "/resume/Anshul_Singal_Resume.pdf";
-  const RESUME_NAME = "Anshul_Singal_Resume.pdf";
+  const RESUME_URL = "/resume/Anshul_Singal_FullStack_Developer.pdf";
+  const RESUME_NAME = "Anshul_Singal_FullStack_Developer.pdf";
   resumeAnchor.addEventListener("click", (e) => {
     e.preventDefault();
     downloadResume(RESUME_URL, RESUME_NAME);
